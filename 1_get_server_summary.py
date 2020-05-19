@@ -31,7 +31,9 @@ def main():
 
     # Query API for Server
     server_req = requests.get(server_api_url, auth=AUTH)
-    print(server_req.json()['Results'][0])
+    if len (server_req.json()['Results']) == 1:
+        srv = server_req.json()['Results'][0]
+        print('We found {}. Its model is {}. Its serial is {}'.format(srv['Name'], srv['Model'], srv['Serial']))
 
 if __name__ == "__main__":
     main()
